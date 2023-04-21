@@ -1,0 +1,58 @@
+/* js */
+header {
+    text-align: center;
+    background: linear-gradient(to right, blue, pink);
+    margin: .5%;
+    border-radius: 3px;
+    color: White;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px;
+}
+
+/* MAIN */
+main {
+    display: flex;
+}
+
+.mains{
+    padding: 1%;
+    /* border-style: solid; */
+}
+#search{
+    
+    width: 30%;
+}
+#results{
+    width: 70%;
+}
+
+/* Everything inside SEARCH */
+/* form */
+#city-search{
+    /* border-top: 2px solid grey;  */
+    /* background-color: red; */
+}
+button{
+    margin: 3%;
+}
+
+#history{
+    border-top: 2px solid grey; 
+    /* background-color: red; */
+}
+
+.card{
+    color: white;
+    background-color: rgb(186, 47, 221);
+    border-radius: 5px;
+    padding: 0.5% 2%;
+    border: none;
+    margin: 3%;
+}
+
+/* Everything inside RESULTS */
+/* forecast div */
+#forecast{
+    border: 2px solid #9867e2;
+    border-radius: 3px;
+}
