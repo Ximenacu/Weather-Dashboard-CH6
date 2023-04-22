@@ -63,7 +63,15 @@ button{
 #forecast{
     border: 2px solid #9867e2;
     border-radius: 3px;
+    font-size:30px;
+    padding: 1%;
+}
+#cityName{
     font-weight: bold;
     text-align: center;
-    font-size:30px;
+}
+
+#forecast2{
+    display: flex;
+    justify-content: space-around;
 }
