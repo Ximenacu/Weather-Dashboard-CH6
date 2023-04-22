@@ -6,6 +6,7 @@ var cityName;
 var optionsNamesArr = [];
 var mainW = [];
 var date5=[];
+var icon=[];
 var temp=[];
 var wind=[];
 var hum=[] ;
@@ -127,6 +128,7 @@ function getWeatherApi(lat,lon,chosen) {
 function displayInfo(chosen,data){
   console.log("   displayInfo()");
   document.querySelector("#cityName").textContent=chosen;
+  document.querySelector("#icon").setAttribute("src", "https://openweathermap.org/img/wn/"+data.list[0].weather[0].icon+"@2x.png");
   document.querySelector("#mainW").textContent=data.list[0].weather[0].description;
   document.querySelector("#temp").textContent="Temperature: "+data.list[0].main.temp+" °C";
   document.querySelector("#wind").textContent="Wind: "+data.list[0].wind.speed+" m/sec";
@@ -135,24 +137,23 @@ function displayInfo(chosen,data){
   for (i=0;i<5;i++){
     var indexs =[0,10,20,30,39];
     date5[i] = data.list[indexs[i]].dt_txt;
+    icon[i] = "https://openweathermap.org/img/wn/"+data.list[indexs[i]].weather[0].icon+"@2x.png"
     mainW[i] =data.list[indexs[i]].weather[0].description;
     temp[i] ="Temperature: "+data.list[indexs[i]].main.temp+" °C";
     wind[i] ="Wind: "+data.list[indexs[i]].wind.speed+" m/sec";
     hum[i] = "Humidity: "+data.list[indexs[i]].main.humidity+" %";
 
     document.querySelector("#future"+i).textContent=date5[i]
+    var varname = document.createElement("img");
+    varname.setAttribute("src", "https://openweathermap.org/img/wn/"+data.list[0].weather[0].icon+"@2x.png");
+    document.querySelector(("#future"+i)).appendChild(varname);
     appends(i,"p","mainWeatherF",mainW,("#future"+i));
     appends(i,"p","temperatureF",temp,("#future"+i));
     appends(i,"p","windF",wind,("#future"+i));
     appends(i,"p","humF",hum,("#future"+i));
-    // document.querySelector("#future"+i).appendChild()mainW[i];
-    // document.querySelector("#future"+i).appendChild()temp[i] ;
-    // document.querySelector("#future"+i).appendChild()wind[i];
-    // document.querySelector("#future"+i).textContent=hum[i];
 
   }
   
-  console.log("date5: "+date5);
 
 }
 

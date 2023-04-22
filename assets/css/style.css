@@ -66,6 +66,10 @@ button{
     font-size:30px;
     padding: 1%;
 }
+#cityicondiv{
+    display: flex;
+    justify-content: space-around;
+}
 #cityName{
     font-weight: bold;
     text-align: center;
