@@ -75,3 +75,12 @@ button{
     display: flex;
     justify-content: space-around;
 }
+
+/* future */
+#futures{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(79, 7, 128);
+    color: white;
+    margin: 3%;
+}
