@@ -33,11 +33,16 @@ main {
     /* background-color: red; */
 }
 button{
-    margin: 3%;
+    margin: 5%;
+}
+
+.options:hover {
+    font-weight: bold;
 }
 
 #history{
     border-top: 2px solid grey; 
+    margin: 5%;
     /* background-color: red; */
 }
 
@@ -49,10 +54,16 @@ button{
     border: none;
     margin: 3%;
 }
+.card:hover {
+    font-weight: bold;
+}
 
 /* Everything inside RESULTS */
 /* forecast div */
 #forecast{
     border: 2px solid #9867e2;
     border-radius: 3px;
+    font-weight: bold;
+    text-align: center;
+    font-size:30px;
 }

@@ -14,15 +14,24 @@
     <main>
         <div class="mains" id="search">
 
-            <form id="citySearch"> <h2>Search for a City</h2>
-                <input class="form-control" placeholder="Mexico City" id="city" />
-                <button class="btn btn-primary" id="submit">Submit</button>
-            </form>
+            <div id="citySearch">
+                <form> <h2>Search for a City</h2>
+                    <input class="form-control" placeholder="Mexico City" id="city" />
+                    <button class="btn btn-primary" id="submit">Submit</button>
+                </form>
+                <div class="optionsBox"><h5 id="Select"></h5>
+                    <div class="options" id="0"></div>
+                    <div class="options" id="1"></div>
+                    <div class="options" id="2"></div>
+                    <div class="options" id="3"></div>
+                    <div class="options" id="4"></div>
+                </div>
+            </div>
 
-            <div id="history"></div>
+            <div id="history"><h5 id="history-text"></h5></div>
         </div>
         <div class="mains" id="results">
-            <div id="forecast"><h2>City</h2></div>
+            <div id="forecast"><h2>City</h2><h3 id="currentDay"></h3></div>
             <div id="future"><h3>5-Day forecast:</h3>
 
             </div>
@@ -31,5 +40,9 @@
     </main>
     
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+crossorigin="anonymous"></script>
 <script src="./script.js"></script>
 </html>

@@ -3,131 +3,113 @@ var lat;
 var lon;
 var APIKey = "41adf6f71fd0597dbaad07a430a610c9";
 var cityName;
+var optionsNamesArr = [];
 
-// 
+//  SUBMIT BUTTON 
 document.querySelector("#submit").addEventListener("click", function(event){
   event.preventDefault();
+  erraseOptions()
   cityName = document.querySelector("#city").value;
-  console.log(" city name: "+ cityName);
-
-  var card = document.createElement("div");
-  card.setAttribute("class", "card");
-  card.textContent= cityName;
-  document.querySelector("#history").appendChild(card);
 
   getCoordApi();
 
-//   namescore.push(name);
-//   namescore.push(finalscore);
-
-//   localStorage.setItem("StoredNamescore", JSON.stringify(namescore));
-//   message.textContent="Thanks for submitting your name, you can now compare your score or try again!"
 });
 
+// USES API TO GET COORDINATES FROM CITY NAME.
+//    DISPLAYS CITY OPTIONS TO CHOOSE FROM.
+//        CALLS CLICKoPTIONS FOR COORDINATES.
 function getCoordApi() {
-  console.log("cityName at coord: "+cityName);
+  console.log("   getCoordApi()");
   var queryURL1 = "http://api.openweathermap.org/geo/1.0/direct?q="+ cityName +"&limit=5&appid=41adf6f71fd0597dbaad07a430a610c9" ;
   // http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
-  // var queryURL1 =    "http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=41adf6f71fd0597dbaad07a430a610c9" ;
-
 
   fetch(queryURL1)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log('data: '+data);
+      console.log('data from getcoord:');
+      console.log(data);
 
-      var appendobj = document.createElement("p");
-      // appendobj.setAttribute("class", "card");
-      appendobj.textContent= data;
-      document.querySelector("#forecast").appendChild(appendobj);
+      for (i=0;i<2;i++){
+        document.querySelector(".optionsBox").style.display = "block";
+        document.querySelector("#Select").textContent="Select your City:";
 
-      // //Loop over the data to generate a table, each table row will have a link to the repo url
-      // for (var i = 0; i < data.length; i++) {
-      //   // Creating elements, tablerow, tabledata, and anchor
-      //   var createTableRow = document.createElement('tr');
-      //   var tableData = document.createElement('td');
-      //   var link = document.createElement('a');
+        var optionsNames = data[i].country+" - "+data[i].name+" ("+data[i].state+")";
+        document.getElementById(i).textContent= optionsNames;
+        optionsNamesArr[i]=optionsNames;
+        console.log("optionsNamesArr: "+optionsNamesArr);
+      }
 
-      //   // Setting the text of link and the href of the link
-      //   link.textContent = data[i].html_url;
-      //   link.href = data[i].html_url;
+      clickOptions(data,optionsNamesArr)
 
-      //   // Appending the link to the tabledata and then appending the tabledata to the tablerow
-      //   // The tablerow then gets appended to the tablebody
-      //   tableData.appendChild(link);
-      //   createTableRow.appendChild(tableData);
-      //   tableBody.appendChild(createTableRow);
-      // }
     });
 }
 
-function getWeatherApi(cityName) {
-  // var requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=19.4326&lon=99.1332&appid=41adf6f71fd0597dbaad07a430a610c9';
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=41adf6f71fd0597dbaad07a430a610c9" ;
 
+// CLICK LISTENNER FOR OPTIONS:
+//    SAVES CHOSEN COORDINATES
+//        CREATES HISTORY CARDS     <-------------BUG HERE MAYBE 
+function clickOptions(data,optionsNamesArr){
+  console.log("   clickOptions()");
+  var saveButton = $('.options');
+  saveButton.on('click', function (event) {
+    var theId = this.id;
+    console.log("the id!:"+theId);
+    lat=data[theId].lat;
+    lon=data[theId].lon;
+    console.log("lat:"+lat);
+    console.log("lon"+lon);
+
+    var card = document.createElement("div");
+    card.setAttribute("class", "card");
+    var chosen = optionsNamesArr[theId];
+    card.textContent= chosen;
+    erraseOptions()
+    document.querySelector("#history").appendChild(card);
+    document.querySelector("#history-text").textContent="Search History";
+
+    getWeatherApi(lat,lon,chosen)
+    
+  });
+}
+
+// CLEARS THE OPTIONS. 
+function erraseOptions(){
+  console.log("   erraseOptions()");
+  document.querySelector(".optionsBox").style.display = "none";
+  for (n=0;n<optionsNamesArr.length;n++){
+    optionsNamesArr.shift();
+    console.log("optionsNamesArr: "+optionsNamesArr);
+  }
+
+}
+
+
+function getWeatherApi(lat,lon,chosen) {
+  console.log("   getweatherApi()");
+  // https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=41adf6f71fd0597dbaad07a430a610c9" ;
 
   fetch(queryURL)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log('data: '+data);
-      // //Loop over the data to generate a table, each table row will have a link to the repo url
-      // for (var i = 0; i < data.length; i++) {
-      //   // Creating elements, tablerow, tabledata, and anchor
-      //   var createTableRow = document.createElement('tr');
-      //   var tableData = document.createElement('td');
-      //   var link = document.createElement('a');
+      console.log("Data from api 2");
+      console.log(data);
 
-      //   // Setting the text of link and the href of the link
-      //   link.textContent = data[i].html_url;
-      //   link.href = data[i].html_url;
-
-      //   // Appending the link to the tabledata and then appending the tabledata to the tablerow
-      //   // The tablerow then gets appended to the tablebody
-      //   tableData.appendChild(link);
-      //   createTableRow.appendChild(tableData);
-      //   tableBody.appendChild(createTableRow);
-      // }
     });
+  
+  displayInfo(chosen)
 }
 
-// getApi(19.4326,99.1332);
+function displayInfo(chosen){
+  console.log("   displayInfo()");
+  document.querySelector("#forecast").textContent=chosen;
+  var currentDay = dayjs().format('dddd, MMMM DD, YYYY.');
+  console.log("currentDay: "+currentDay);
+  // document.querySelector("#currentDay").textContent="cpmyent";
+  // $('#currentDay').text(currentDay);
 
-// omg
-// function getApi() {
-//   // fetch request gets a list of all the repos for the node.js organization
-//   var requestUrl = 'https://api.github.com/users/octocat/repos';
-
-//   fetch(requestUrl)
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data)
-//       //Loop over the data to generate a table, each table row will have a link to the repo url
-//       // for (var i = 0; i < data.length; i++) {
-//       //   // Creating elements, tablerow, tabledata, and anchor
-//       //   var createTableRow = document.createElement('tr');
-//       //   var tableData = document.createElement('td');
-//       //   var link = document.createElement('a');
-
-//       //   // Setting the text of link and the href of the link
-//       //   link.textContent = data[i].html_url;
-//       //   link.href = data[i].html_url;
-
-//       //   // Appending the link to the tabledata and then appending the tabledata to the tablerow
-//       //   // The tablerow then gets appended to the tablebody
-//       //   tableData.appendChild(link);
-//       //   createTableRow.appendChild(tableData);
-//       //   tableBody.appendChild(createTableRow);
-//       // }
-//     });
-// }
-
-
-
-// NO FURULA LA PUTA API 
-// ERROR : 401 UNAUTHORIZED. 
+}
