@@ -44,9 +44,9 @@ function getCoordApi() {
       return response.json();
     })
     .then(function (data) {
-      newdata=data;
+    //   newdata=data;
       console.log('data from getcoord:');
-      console.log(newdata);
+      console.log(data);
 
       for (i=0;i<2;i++){
         document.querySelector(".optionsBox").style.display = "block";
