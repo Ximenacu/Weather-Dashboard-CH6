@@ -86,7 +86,7 @@ function clickOptions(data,optionsNamesArr){
     hist[0]=chosen;
     hist[1]=lat;
     hist[2]=lon;
-    // console.log("hist: "+hist);
+    console.log("hist: "+hist);
     
 
     // var card = document.createElement("div");
@@ -96,7 +96,7 @@ function clickOptions(data,optionsNamesArr){
 
     appends("div","card",chosen,"#history");
     histArr.push(hist);
-    // console.log("histArr: "+histArr);
+    console.log("histArr: "+histArr);
     document.querySelector("#history-text").textContent="Search History";
 
     // erraseOptions()
