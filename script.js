@@ -33,7 +33,7 @@ document.querySelector("#submit").addEventListener("click", function(event){
 // USES API TO GET COORDINATES FROM CITY NAME.
 function getCoordApi() {
   console.log("   getCoordApi()");
-  var queryURL1 = "http://api.openweathermap.org/geo/1.0/direct?q="+ cityName +"&limit=5&appid=41adf6f71fd0597dbaad07a430a610c9" ;
+  var queryURL1 = "https://api.openweathermap.org/geo/1.0/direct?q="+ cityName +"&limit=5&appid=41adf6f71fd0597dbaad07a430a610c9" ;
   // http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 
   fetch(queryURL1)
