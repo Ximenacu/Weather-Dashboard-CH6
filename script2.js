@@ -57,7 +57,7 @@ function getCoordApi() {
       lon=data[0].lon;
       console.log("lat:"+lat);
       console.log("lon: "+lon);
-      localStorage.setItem(cityName, JSON.stringify("lat: "+lat+ " lon: "+lon));
+      localStorage.setItem(cityName, JSON.stringify(lat+ " "+lon));
       getWeatherApi(lat,lon);
 
     });
@@ -125,8 +125,7 @@ function getWeatherApi(lat,lon) {
       displayInfo(data)
 
     });
-    lat="";
-    lon="";
+
 }
 
 function displayInfo(data){
@@ -171,9 +170,11 @@ function clickHistory(){
   saveButton.on('click', function () {
     console.log("this: ")
     console.log(this)
-    console.log(this.content)
-    // var stored = JSON.parse(localStorage.getItem("StoredNamescore"));
-    // getWeatherApi(lat,lon,chosen)
+    console.log("this.value: ")
+    console.log(this.value)
+    // var stored = JSON.parse(localStorage.getItem(this.value));
+    // stored.split(' ');
+    // getWeatherApi(stored[0],stored[1]);
     
   });
 }
