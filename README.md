@@ -1,12 +1,12 @@
-# Title Weather Dashboard
+# Weather Dashboard
 
 Weather dashboard that retrieves weather data for cities. Runs in the browser and features dynamically updated HTML and CSS.
 
-## URL of deployed app: 
+## URL of deployed app: https://ximenacu.github.io/Weather-Dashboard-CH6/
 
 ## URL of Git Hub: https://github.com/Ximenacu/Weather-Dashboard-CH6
 
-![image](img_name.jpg)
+![image](WeatherDashboardSS.jpg)
 
 ## User Story: 
 AS A traveler
@@ -25,7 +25,7 @@ THEN I am presented with the city name, the date, an icon representation of weat
 * WHEN I view future weather conditions for that city
 THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity. ✅
 
-* WHEN I click on a city in the search history
+* WHEN I click on a city in the search history ✅
 THEN I am again presented with current and future conditions for that city
 
 
