@@ -30,6 +30,7 @@ document.querySelector("#submit").addEventListener("click", function(event){
   console.log("cityname: "+cityName);
   getCoordApi();
 
+  document.querySelector("#history-text").textContent="Search History";
   appends("div","card",cityName,"#history");
   clickHistory()
 
@@ -63,47 +64,6 @@ function getCoordApi() {
     });
 }
 
-
-// CLICK LISTENNER FOR OPTIONS:
-//    SAVES CHOSEN COORDINATES
-//        CREATES HISTORY CARDS     <-------------BUG HERE MAYBE 
-// function clickOptions(data,optionsNamesArr){
-//   console.log("   clickOptions()");
-
-//   var saveButton = $('.options');
-//   saveButton.on('click', function (event) {
-//     var theId = this.id;
-//     console.log("the id!:"+theId);
-
-//     var chosen = optionsNamesArr[theId];
-//     console.log("chosen clickoptions: "+chosen);
-
-//     lat=data[theId].lat;
-//     lon=data[theId].lon;
-//     console.log("lat:"+lat);
-//     console.log("lon"+lon);
-
-//     hist[0]=chosen;
-//     hist[1]=lat;
-//     hist[2]=lon;
-//     console.log("hist: "+hist);
-    
-
-//     // var card = document.createElement("div");
-//     // card.setAttribute("class", "card");
-//     // card.textContent= chosen;
-//     // document.querySelector("#history").appendChild(card);
-
-//     appends("div","card",chosen,"#history");
-//     histArr.push(hist);
-//     console.log("histArr: "+histArr);
-//     document.querySelector("#history-text").textContent="Search History";
-
-//     // erraseOptions()
-//     getWeatherApi(lat,lon,chosen)
-    
-//   });
-// }
 
 
 
@@ -168,14 +128,18 @@ function clickHistory(){
 
   var saveButton = $('.card');
   saveButton.on('click', function () {
-    console.log("this: ")
-    console.log(this)
-    console.log("this.value: ")
-    console.log(this.value)
-    // var stored = JSON.parse(localStorage.getItem(this.value));
-    // stored.split(' ');
-    // getWeatherApi(stored[0],stored[1]);
+    console.log("this.innerHTML: ")
+    console.log(this.innerHTML)
+    var stored = JSON.parse(localStorage.getItem(this.innerHTML));
+    stored.split(' ');
+    console.log("stored: ")
+    console.log(stored)
+    console.log("stored typeof: ")
+    console.log(typeof stored)
+    console.log("stored parce float: ")
+    console.log(stored[0])
     
+    getWeatherApi(stored[0],stored[1]);
   });
 }
 
